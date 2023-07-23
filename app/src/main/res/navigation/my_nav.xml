@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/cityFragment">
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.example.travelapp.UI.CityFragment"
+        android:label="city_fragment"
+        tools:layout="@layout/city_fragment" >
+        <action
+            android:id="@+id/navigateToLandmark"
+            app:destination="@id/landmarkFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/navigateToUserInputFragment"
+            app:destination="@id/userInputFragment" />
+        <argument
+            android:name="userCityInput"
+            android:defaultValue="userCityInputTest" />
+        <argument
+            android:name="descriptionUserInput"
+            android:defaultValue="userDescriptionInputTest" />
+    </fragment>
+    <fragment
+        android:id="@+id/landmarkFragment"
+        android:name="com.example.travelapp.UI.LandmarkFragment"
+        android:label="landmark_fragment"
+        tools:layout="@layout/landmark_fragment">
+        <argument android:name="cityName" />
+        <action
+            android:id="@+id/fromLandmarkFragmentToCityFragment"
+            app:destination="@id/cityFragment" />
+        <action
+            android:id="@+id/fromLandmarkFragmentToLandmarkUserInput"
+            app:destination="@id/landmarkUserInputs" />
+        <argument
+            android:name="currentCityId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInputFragment"
+        android:name="com.example.travelapp.UI.UserInputFragment"
+        android:label="fragment_user_input"
+        tools:layout="@layout/fragment_user_input" >
+        <action
+            android:id="@+id/fromUserInputToCityFragment"
+            app:destination="@id/cityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/landmarkUserInputs"
+        android:name="com.example.travelapp.UI.LandmarkUserInputs"
+        android:label="fragment_landmark_user_inputs"
+        tools:layout="@layout/fragment_landmark_user_inputs" >
+        <action
+            android:id="@+id/fromLandmarkUserInputToLandmarkFragment"
+            app:destination="@id/landmarkFragment" />
+        <argument
+            android:name="currentCityId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
