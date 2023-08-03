@@ -1,8 +1,7 @@
-package com.example.travelapp.UI
+package com.example.travelapp.views
 
-import ViewModel.CityViewModel
+import com.example.travelapp.viewModel.CityViewModel
 import android.app.AlertDialog
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.navArgs
-import com.example.travelapp.Model.City
-import com.example.travelapp.R
-import com.example.travelapp.R.layout.city_fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.example.travelapp.CustomAdapter.CityAdapter as CityAdapter
+import com.example.travelapp.model.City
+import com.example.travelapp.databinding.CityFragmentBinding
+import com.example.travelapp.customAdapter.CityAdapter as CityAdapter
 
 
 class CityFragment() : Fragment(), CityAdapter.OnLongClickListener {
@@ -26,17 +23,20 @@ class CityFragment() : Fragment(), CityAdapter.OnLongClickListener {
     private val args by navArgs<CityFragmentArgs>()
     private lateinit var myCityViewModel: CityViewModel
     private lateinit var recyclerView: RecyclerView
+    private lateinit var binding:CityFragmentBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
+        binding = CityFragmentBinding.inflate(inflater,container,false)
+        val root =binding.root
 
         // Inflate the layout for this fragment
-        val view = inflater.inflate(city_fragment, container, false)
-        recyclerView = view.findViewById(R.id.cityFragmentView)
+//        val view = inflater.inflate(city_fragment, container, false)
+        recyclerView = binding.cityFragmentView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         myCityViewModel = ViewModelProvider(this).get(CityViewModel::class.java)
@@ -46,14 +46,14 @@ class CityFragment() : Fragment(), CityAdapter.OnLongClickListener {
             recyclerView.adapter = adapter
         })
 
-        val floatingAddButton = view.findViewById<FloatingActionButton>(R.id.cityAddButton)
+        val floatingAddButton = binding.cityAddButton
 
         floatingAddButton.setOnClickListener {
             val action = CityFragmentDirections.navigateToUserInputFragment()
             findNavController().navigate(action)
         }
 
-        return view
+        return root
     }
 
     override fun onItemLongClicked(city: City) {

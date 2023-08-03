@@ -1,11 +1,11 @@
-package ViewModel
+package com.example.travelapp.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import Repository.LandmarkRepository
+import com.example.travelapp.repository.LandmarkRepository
 import androidx.lifecycle.viewModelScope
-import com.example.travelapp.Model.Landmark
+import com.example.travelapp.model.Landmark
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

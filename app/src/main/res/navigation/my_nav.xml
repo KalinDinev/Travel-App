@@ -6,7 +6,7 @@
     app:startDestination="@id/cityFragment">
     <fragment
         android:id="@+id/cityFragment"
-        android:name="com.example.travelapp.UI.CityFragment"
+        android:name="com.example.travelapp.views.CityFragment"
         android:label="city_fragment"
         tools:layout="@layout/city_fragment" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/landmarkFragment"
-        android:name="com.example.travelapp.UI.LandmarkFragment"
+        android:name="com.example.travelapp.views.LandmarkFragment"
         android:label="landmark_fragment"
         tools:layout="@layout/landmark_fragment">
         <argument android:name="cityName" />
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/userInputFragment"
-        android:name="com.example.travelapp.UI.UserInputFragment"
+        android:name="com.example.travelapp.views.UserInputFragment"
         android:label="fragment_user_input"
         tools:layout="@layout/fragment_user_input" >
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/landmarkUserInputs"
-        android:name="com.example.travelapp.UI.LandmarkUserInputs"
+        android:name="com.example.travelapp.views.LandmarkUserInputs"
         android:label="fragment_landmark_user_inputs"
         tools:layout="@layout/fragment_landmark_user_inputs" >
         <action

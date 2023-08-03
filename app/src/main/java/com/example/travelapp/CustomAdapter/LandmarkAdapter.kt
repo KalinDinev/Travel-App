@@ -1,11 +1,11 @@
-package com.example.travelapp.CustomAdapter
+package com.example.travelapp.customAdapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.travelapp.Model.Landmark
+import com.example.travelapp.model.Landmark
 import com.example.travelapp.R
 
 class LandmarkAdapter(private var landmarkList: List<Landmark>) :

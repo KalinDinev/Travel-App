@@ -1,10 +1,10 @@
-package Repository
+package com.example.travelapp.repository
 
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.LiveData
-import com.example.travelapp.Data.CityDao
-import com.example.travelapp.Model.City
+import com.example.travelapp.dao.CityDao
+import com.example.travelapp.model.City
 
 class CityRepository(private val cityDao: CityDao, private val context: Application) {
 

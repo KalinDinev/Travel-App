@@ -1,4 +1,4 @@
-package com.example.travelapp.CustomAdapter
+package com.example.travelapp.customAdapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.travelapp.Model.City
+import com.example.travelapp.model.City
 import com.example.travelapp.R
-import com.example.travelapp.UI.CityFragmentDirections
+import com.example.travelapp.views.CityFragmentDirections
 
 class CityAdapter(private var cityList: List<City>) :
     RecyclerView.Adapter<CityAdapter.ViewHolder>()

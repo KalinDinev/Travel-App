@@ -1,6 +1,6 @@
-package com.example.travelapp.UI
+package com.example.travelapp.views
 
-import ViewModel.LandmarkViewModel
+import com.example.travelapp.viewModel.LandmarkViewModel
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,9 +15,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.travelapp.CustomAdapter.LandmarkAdapter
-import com.example.travelapp.Model.Landmark
+import com.example.travelapp.customAdapter.LandmarkAdapter
+import com.example.travelapp.model.Landmark
 import com.example.travelapp.R
+import com.example.travelapp.databinding.FragmentLandmarkUserInputsBinding
+import com.example.travelapp.databinding.LandmarkFragmentBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -26,22 +28,24 @@ class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
     private val args by navArgs<LandmarkFragmentArgs>()
     private lateinit var viewModel: LandmarkViewModel
     private lateinit var recyclerView: RecyclerView
+    private lateinit var binding:LandmarkFragmentBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.landmark_fragment, container, false)
-
-        recyclerView = view.findViewById(R.id.landmarkFragmentView)
+//        val view = inflater.inflate(R.layout.landmark_fragment, container, false)
+        binding = LandmarkFragmentBinding.inflate(inflater,container,false)
+        val root =binding.root
+        recyclerView = binding.landmarkFragmentView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val cityId = args.currentCityId
 
-        val cityNameInput = view.findViewById<TextView>(R.id.cityNameInput)
-        val btnBack = view.findViewById<FloatingActionButton>(R.id.backFromLandmark)
+        val cityNameInput = binding.cityNameInput
+        val btnBack = binding.backFromLandmark
         cityNameInput.text = args.cityName
 
         viewModel = ViewModelProvider(this).get(LandmarkViewModel::class.java)
@@ -54,7 +58,7 @@ class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
         })
 
 
-        val createLandmarkButton = view.findViewById<FloatingActionButton>(R.id.landmarkAddButton)
+        val createLandmarkButton = binding.landmarkAddButton
         createLandmarkButton.setOnClickListener {
 // maria add arguments
 
@@ -68,7 +72,7 @@ class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
             findNavController().navigate(R.id.cityFragment)
         }
 
-        return view
+        return root
     }
 
     override fun onItemLongClicked(landmark: Landmark) {

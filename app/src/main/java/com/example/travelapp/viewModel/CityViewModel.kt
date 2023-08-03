@@ -1,12 +1,12 @@
-package ViewModel
+package com.example.travelapp.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.travelapp.Data.CityDatabase
-import Repository.CityRepository
-import com.example.travelapp.Model.City
+import com.example.travelapp.data.CityDatabase
+import com.example.travelapp.repository.CityRepository
+import com.example.travelapp.model.City
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

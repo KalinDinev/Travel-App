@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f4eeff"
-    tools:context=".UI.CityFragment">
+    tools:context=".views.CityFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cityFragmentView"

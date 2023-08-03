@@ -1,6 +1,6 @@
-package com.example.travelapp.UI
+package com.example.travelapp.views
 
-import ViewModel.LandmarkViewModel
+import com.example.travelapp.viewModel.LandmarkViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,17 +12,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.travelapp.Model.Landmark
+import com.example.travelapp.model.Landmark
 
 import com.example.travelapp.R
+import com.example.travelapp.databinding.FragmentLandmarkUserInputsBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class LandmarkUserInputs : Fragment() {
 
-
     private lateinit var viewModel: LandmarkViewModel
     private val args by navArgs<LandmarkUserInputsArgs>()
+    private lateinit var binding:FragmentLandmarkUserInputsBinding
 
 
     override fun onCreateView(
@@ -30,15 +31,17 @@ class LandmarkUserInputs : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_landmark_user_inputs, container, false)
-        val backButton = view.findViewById<FloatingActionButton>(R.id.backFromLandmarkInputs)
-        val btnCreate = view.findViewById<Button>(R.id.createLandmarkButton)
+        binding = FragmentLandmarkUserInputsBinding.inflate(inflater,container,false)
+        val root =binding.root
+//        val view = inflater.inflate(R.layout.fragment_landmark_user_inputs, container, false)
+        val backButton = binding.backFromLandmarkInputs
+        val btnCreate = binding.createLandmarkButton
 
         var cityId = args.currentCityId
 
 
-        val landmarkNameInput = view.findViewById<EditText>(R.id.landmarkNameInput)
-        val landmarkDescriptionInput = view.findViewById<EditText>(R.id.landmarkDescriptionInput)
+        val landmarkNameInput = binding.landmarkNameInput
+        val landmarkDescriptionInput = binding.landmarkDescriptionInput
 
         // Initialize the LandmarkViewModel
         viewModel = ViewModelProvider(this).get(LandmarkViewModel::class.java)
@@ -68,7 +71,7 @@ class LandmarkUserInputs : Fragment() {
             findNavController().navigateUp()
         }
 
-        return view
+        return root
     }
 
 }

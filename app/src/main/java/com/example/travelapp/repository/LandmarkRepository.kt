@@ -1,10 +1,10 @@
-package Repository
+package com.example.travelapp.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.example.travelapp.Data.CityDatabase
-import com.example.travelapp.Data.LandmarkDao
-import com.example.travelapp.Model.Landmark
+import com.example.travelapp.data.CityDatabase
+import com.example.travelapp.dao.LandmarkDao
+import com.example.travelapp.model.Landmark
 
 class LandmarkRepository(application: Application) {
 

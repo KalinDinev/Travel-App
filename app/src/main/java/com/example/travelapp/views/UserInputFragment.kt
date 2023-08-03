@@ -1,35 +1,35 @@
-package com.example.travelapp.UI
+package com.example.travelapp.views
 
-import ViewModel.CityViewModel
+import com.example.travelapp.viewModel.CityViewModel
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.travelapp.Model.City
+import com.example.travelapp.model.City
 import com.example.travelapp.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.travelapp.databinding.FragmentUserInputBinding
 
 
 class UserInputFragment : Fragment() {
 
     private lateinit var myCityViewModel: CityViewModel
-
+    private  lateinit var binding:FragmentUserInputBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_user_input, container, false)
-        val btnCreate = view.findViewById<Button>(R.id.createCityButton)
-        val btnBack = view.findViewById<FloatingActionButton>(R.id.backFromUserInput)
+        binding = FragmentUserInputBinding.inflate(inflater,container,false)
+        val root =binding.root
+//        val view = inflater.inflate(R.layout.fragment_user_input, container, false)
+        val btnCreate = binding.createCityButton
+        val btnBack = binding.backFromUserInput
 
         myCityViewModel = ViewModelProvider(this)[CityViewModel::class.java]
 
@@ -43,16 +43,15 @@ class UserInputFragment : Fragment() {
 
         }
 
-        return view
+        return root
     }
 
     private fun insertDataToDatabase() {
-        val userCityInput = view?.findViewById<EditText>(R.id.cityNameInput)?.text.toString()
-        val userDecriptionInput =
-            view?.findViewById<EditText>(R.id.decriptionNameInput)?.text.toString()
+        val userCityInput = binding.cityNameInput.text.toString()
+        val userDescriptionInput =binding.decriptionNameInput.text.toString()
 
-        if (checkInputs(userCityInput, userDecriptionInput)) {
-            val userInputs = City(0, userCityInput, userDecriptionInput)
+        if (checkInputs(userCityInput, userDescriptionInput)) {
+            val userInputs = City(0, userCityInput, userDescriptionInput)
             myCityViewModel.addCity(userInputs)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.cityFragment)

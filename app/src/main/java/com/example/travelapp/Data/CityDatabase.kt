@@ -1,11 +1,13 @@
-package com.example.travelapp.Data
+package com.example.travelapp.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.travelapp.Model.City
-import com.example.travelapp.Model.Landmark
+import com.example.travelapp.dao.CityDao
+import com.example.travelapp.dao.LandmarkDao
+import com.example.travelapp.model.City
+import com.example.travelapp.model.Landmark
 
 @Database(entities = [City::class, Landmark::class], version = 1, exportSchema = false)
 abstract class CityDatabase : RoomDatabase() {
