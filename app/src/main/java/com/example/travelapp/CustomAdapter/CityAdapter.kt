@@ -11,11 +11,7 @@ import com.example.travelapp.R
 import com.example.travelapp.views.CityFragmentDirections
 
 class CityAdapter(private var cityList: List<City>) :
-    RecyclerView.Adapter<CityAdapter.ViewHolder>()
-{
-//     private val onClickEvent: CityListener
-//    private var cityList = emptyList<City>()
-
+    RecyclerView.Adapter<CityAdapter.ViewHolder>() {
 
     interface OnLongClickListener {
         fun onItemLongClicked(city: City)
@@ -33,7 +29,7 @@ class CityAdapter(private var cityList: List<City>) :
         // Your holder should contain and initialize a member variable
         // for any view that will be set as you render a row
         val cityNameView = itemView.findViewById<TextView>(R.id.cardCity)
-        val descriptionView =itemView.findViewById<TextView>(R.id.cardDescription)
+        val descriptionView = itemView.findViewById<TextView>(R.id.cardDescription)
     }
 
     // ... constructor and member variables
@@ -52,14 +48,14 @@ class CityAdapter(private var cityList: List<City>) :
         // Get the data model based on position
         val currentItem = cityList[position]
 
-        viewHolder.cityNameView.text =currentItem.cityName
-        viewHolder.descriptionView.text =currentItem.cityDescription
+        viewHolder.cityNameView.text = currentItem.cityName
+        viewHolder.descriptionView.text = currentItem.cityDescription
         // Set item views based on your views and data model
 
         viewHolder.itemView.setOnClickListener {
-            val currentCityName =currentItem.cityName.toString()
-            val currentCityId =currentItem.id
-            val action =CityFragmentDirections.navigateToLandmark(currentCityName,currentCityId)
+            val currentCityName = currentItem.cityName.toString()
+            val currentCityId = currentItem.id
+            val action = CityFragmentDirections.navigateToLandmark(currentCityName, currentCityId)
             viewHolder.itemView.findNavController().navigate(action)
         }
 
@@ -69,11 +65,10 @@ class CityAdapter(private var cityList: List<City>) :
         }
 
 
-
     }
 
-    fun setData(city:List<City>) {
-        this.cityList =city
+    fun setData(city: List<City>) {
+        this.cityList = city
         notifyDataSetChanged()
     }
 

@@ -5,39 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.travelapp.model.Landmark
-
-import com.example.travelapp.R
 import com.example.travelapp.databinding.FragmentLandmarkUserInputsBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class LandmarkUserInputs : Fragment() {
 
     private lateinit var viewModel: LandmarkViewModel
     private val args by navArgs<LandmarkUserInputsArgs>()
-    private lateinit var binding:FragmentLandmarkUserInputsBinding
+    private lateinit var binding: FragmentLandmarkUserInputsBinding
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentLandmarkUserInputsBinding.inflate(inflater,container,false)
-        val root =binding.root
+        binding = FragmentLandmarkUserInputsBinding.inflate(inflater, container, false)
+        val root = binding.root
 //        val view = inflater.inflate(R.layout.fragment_landmark_user_inputs, container, false)
         val backButton = binding.backFromLandmarkInputs
         val btnCreate = binding.createLandmarkButton
 
-        var cityId = args.currentCityId
+        val cityId = args.currentCityId
+        val cityName = args.cityName
 
 
         val landmarkNameInput = binding.landmarkNameInput
@@ -61,14 +56,20 @@ class LandmarkUserInputs : Fragment() {
                 Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
 
                 // After inserting, navigate back to the LandmarkFragment
-                findNavController().navigateUp()
+                val action = LandmarkFragmentDirections.fromLandmarkFragmentToCityFragment()
+                findNavController().navigate(action)
             } else {
-                Toast.makeText(requireContext(), "All fields required!", Toast.LENGTH_SHORT).show()
+                binding.landmarkNameInput.error = "This field cannot be empty!"
+                binding.landmarkDescriptionInput.error = "This field cannot be empty!"
             }
         }
 
         backButton.setOnClickListener {
-            findNavController().navigateUp()
+
+            val action = LandmarkUserInputsDirections.fromLandmarkUserInputToLandmarkFragment(
+                cityName, cityId
+            )
+            findNavController().navigate(action)
         }
 
         return root

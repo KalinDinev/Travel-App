@@ -11,22 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.travelapp.model.City
-import com.example.travelapp.R
 import com.example.travelapp.databinding.FragmentUserInputBinding
 
 
 class UserInputFragment : Fragment() {
 
     private lateinit var myCityViewModel: CityViewModel
-    private  lateinit var binding:FragmentUserInputBinding
+    private lateinit var binding: FragmentUserInputBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentUserInputBinding.inflate(inflater,container,false)
-        val root =binding.root
+        binding = FragmentUserInputBinding.inflate(inflater, container, false)
+        val root = binding.root
 //        val view = inflater.inflate(R.layout.fragment_user_input, container, false)
         val btnCreate = binding.createCityButton
         val btnBack = binding.backFromUserInput
@@ -35,7 +33,9 @@ class UserInputFragment : Fragment() {
 
 
         btnBack.setOnClickListener {
-            findNavController().navigate(R.id.cityFragment)
+
+            val action = UserInputFragmentDirections.fromUserInputToCityFragment()
+            findNavController().navigate(action)
         }
 
         btnCreate.setOnClickListener {
@@ -48,15 +48,19 @@ class UserInputFragment : Fragment() {
 
     private fun insertDataToDatabase() {
         val userCityInput = binding.cityNameInput.text.toString()
-        val userDescriptionInput =binding.decriptionNameInput.text.toString()
+        val userDescriptionInput = binding.decriptionNameInput.text.toString()
 
         if (checkInputs(userCityInput, userDescriptionInput)) {
             val userInputs = City(0, userCityInput, userDescriptionInput)
             myCityViewModel.addCity(userInputs)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.cityFragment)
+
+            val action = UserInputFragmentDirections.fromUserInputToCityFragment()
+
+            findNavController().navigate(action)
         } else {
-            Toast.makeText(requireContext(), "All fields required!", Toast.LENGTH_LONG).show()
+            binding.cityNameInput.error ="This field cannot be empty!"
+            binding.decriptionNameInput.error ="This field cannot be empty!"
         }
 
     }

@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.navigation.fragment.navArgs
 import com.example.travelapp.model.City
 import com.example.travelapp.databinding.CityFragmentBinding
 import com.example.travelapp.customAdapter.CityAdapter as CityAdapter
@@ -20,19 +19,17 @@ import com.example.travelapp.customAdapter.CityAdapter as CityAdapter
 
 class CityFragment() : Fragment(), CityAdapter.OnLongClickListener {
 
-    private val args by navArgs<CityFragmentArgs>()
     private lateinit var myCityViewModel: CityViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var binding:CityFragmentBinding
+    private lateinit var binding: CityFragmentBinding
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
-        binding = CityFragmentBinding.inflate(inflater,container,false)
-        val root =binding.root
+        binding = CityFragmentBinding.inflate(inflater, container, false)
+        val root = binding.root
 
         // Inflate the layout for this fragment
 //        val view = inflater.inflate(city_fragment, container, false)

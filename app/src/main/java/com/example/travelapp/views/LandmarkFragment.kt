@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,10 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelapp.customAdapter.LandmarkAdapter
 import com.example.travelapp.model.Landmark
-import com.example.travelapp.R
-import com.example.travelapp.databinding.FragmentLandmarkUserInputsBinding
 import com.example.travelapp.databinding.LandmarkFragmentBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
@@ -28,17 +24,15 @@ class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
     private val args by navArgs<LandmarkFragmentArgs>()
     private lateinit var viewModel: LandmarkViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var binding:LandmarkFragmentBinding
+    private lateinit var binding: LandmarkFragmentBinding
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.landmark_fragment, container, false)
-        binding = LandmarkFragmentBinding.inflate(inflater,container,false)
-        val root =binding.root
+        binding = LandmarkFragmentBinding.inflate(inflater, container, false)
+        val root = binding.root
         recyclerView = binding.landmarkFragmentView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -62,14 +56,17 @@ class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
         createLandmarkButton.setOnClickListener {
 // maria add arguments
 
-            val action = LandmarkFragmentDirections.fromLandmarkFragmentToLandmarkUserInput(cityId)
+            val action = LandmarkFragmentDirections.fromLandmarkFragmentToLandmarkUserInput(
+                cityId, args.cityName
+            )
             findNavController().navigate(action)
         }
 
 
         btnBack.setOnClickListener {
+            val action = LandmarkFragmentDirections.fromLandmarkFragmentToCityFragment()
 
-            findNavController().navigate(R.id.cityFragment)
+            findNavController().navigate(action)
         }
 
         return root
@@ -84,9 +81,7 @@ class LandmarkFragment : Fragment(), LandmarkAdapter.OnLongClickListener {
                 // Delete the landmark here
                 viewModel.deleteLandmark(landmark)
                 Toast.makeText(
-                    context,
-                    "Landmark deleted!",
-                    Toast.LENGTH_SHORT
+                    context, "Landmark deleted!", Toast.LENGTH_SHORT
                 ).show()
                 // Call the deleteLandmark function in your LandmarkViewModel passing the 'landmark' object
                 // viewModel.deleteLandmark(landmark)

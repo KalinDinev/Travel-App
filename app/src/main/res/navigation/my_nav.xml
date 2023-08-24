@@ -12,16 +12,15 @@
         <action
             android:id="@+id/navigateToLandmark"
             app:destination="@id/landmarkFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/navigateToUserInputFragment"
-            app:destination="@id/userInputFragment" />
-        <argument
-            android:name="userCityInput"
-            android:defaultValue="userCityInputTest" />
-        <argument
-            android:name="descriptionUserInput"
-            android:defaultValue="userDescriptionInputTest" />
+            app:destination="@id/userInputFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/landmarkFragment"
@@ -31,10 +30,14 @@
         <argument android:name="cityName" />
         <action
             android:id="@+id/fromLandmarkFragmentToCityFragment"
-            app:destination="@id/cityFragment" />
+            app:destination="@id/cityFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/fromLandmarkFragmentToLandmarkUserInput"
-            app:destination="@id/landmarkUserInputs" />
+            app:destination="@id/landmarkUserInputs"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="currentCityId"
             app:argType="integer" />
@@ -46,7 +49,11 @@
         tools:layout="@layout/fragment_user_input" >
         <action
             android:id="@+id/fromUserInputToCityFragment"
-            app:destination="@id/cityFragment" />
+            app:destination="@id/cityFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/landmarkUserInputs"
@@ -55,9 +62,14 @@
         tools:layout="@layout/fragment_landmark_user_inputs" >
         <action
             android:id="@+id/fromLandmarkUserInputToLandmarkFragment"
-            app:destination="@id/landmarkFragment" />
+            app:destination="@id/landmarkFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="currentCityId"
             app:argType="integer" />
+        <argument
+            android:name="cityName"
+            app:argType="string" />
     </fragment>
 </navigation>

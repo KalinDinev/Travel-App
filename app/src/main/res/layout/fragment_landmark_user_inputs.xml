@@ -33,6 +33,7 @@
         app:tint="@color/white" />
 
     <EditText
+
         android:id="@+id/landmarkNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,5 +88,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/landmarkDescriptionInput" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
